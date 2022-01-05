@@ -1,0 +1,30 @@
+version: '3.4'
+
+services:
+  
+  bookshelf.web:
+    container_name: bookshelf.web
+    depends_on:
+      - bookshelf.api
+    ports:
+      - "4200:80"
+  
+  bookshelf.api:
+    container_name: bookshelf.api
+    depends_on: 
+    - bookshelf.db
+    ports:
+      - "8080:8080"
+    environment:
+      - MONGO_CONNECTION_STRING=mongodb://bookshelf.db:27017
+      - MONGO_BOOKSHELF_DB=bookshelf
+      - MONGO_FEEDS_COLLECTION_NAME=books
+      - API_PORT=8080
+  
+  bookshelf.db:
+    container_name: bookshelf.db
+    restart: always
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db

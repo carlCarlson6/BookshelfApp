@@ -1,0 +1,21 @@
+version: '3.4'
+
+services:
+
+  bookshelf.web:
+    image: ${DOCCKER_REGISTRY-}bookshelfweb
+    build:
+      context: ../frontend
+      dockerfile: ../frontend/Dockerfile
+
+  bookshelf.api:
+    image: ${DOCCKER_REGISTRY-}bookshelfapi
+    build:
+      context: ../backend
+      dockerfile: ../backend/Dockerfile
+
+  bookshelf.db:
+    image: mongo
+
+volumes: 
+  mongo_data:
