@@ -1,5 +1,5 @@
 # Common IntelliJ Platform excludes
-
+google_api_key.txt
 **/.idea
 
 # User specific

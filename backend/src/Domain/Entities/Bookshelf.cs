@@ -10,6 +10,9 @@ public class Bookshelf
     
     public ReadOnlyCollection<Book> Books => _books.AsReadOnly();
     private List<Book> _books;
+    
+    public ReadOnlyCollection<string> Locations => 
+        _books.Select(book => book.Location).Distinct().ToList().AsReadOnly();
 
     public Bookshelf(BookshelfId bookshelfId, UserId owner, List<Book> books)
     {
@@ -19,7 +22,7 @@ public class Bookshelf
     }
 
     public static Bookshelf CreateEmpty(UserId owner) => Create(owner, new List<Book>());
-    public static Bookshelf Create(UserId owner, List<Book> books) => new(BookshelfId.Generate(), owner, books);
+    public static Bookshelf Create(UserId owner, List<Book> books) => new (BookshelfId.Generate(), owner, books);
 
-    public void AddBook(Book book) => _books.Add(book);
+    public void AddBookToShelf(Book book) => _books.Add(book);
 }
