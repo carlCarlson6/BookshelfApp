@@ -2,10 +2,11 @@ using Application.Abstractions;
 using Application.Jwt;
 using Domain;
 using Domain.Entities;
+using Domain.Exceptions;
 using Domain.Services;
 using Domain.ValueObjects;
 
-namespace Application;
+namespace Application.UseCases;
 
 public class AuthenticateUser : IAuthenticateUser
 {
@@ -23,7 +24,7 @@ public class AuthenticateUser : IAuthenticateUser
         var user = await FindUserByEmail(inputEmail);
         if (user is null)
             // TODO - create domain exception
-            throw new Exception();
+            throw new UserNotFoundException(inputEmail);
 
         user.ValidatePassword(inputPassword);
         

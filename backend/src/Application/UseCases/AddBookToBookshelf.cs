@@ -1,4 +1,5 @@
 using Application.Abstractions;
+using Domain.Entities;
 using Domain.Services;
 using Domain.ValueObjects;
 
@@ -8,18 +9,11 @@ public class AddBookToBookshelf : IAddBookToBookshelf
 {
     private readonly IBookshelfRepository _bookshelfRepository;
 
-    public AddBookToBookshelf(IBookshelfRepository bookshelfRepository)
-    {
-        _bookshelfRepository = bookshelfRepository;
-    }
+    public AddBookToBookshelf(IBookshelfRepository bookshelfRepository) => _bookshelfRepository = bookshelfRepository;
 
     public async Task Execute(UserId userId, Book book)
     {
-        var bookshelf = await _bookshelfRepository.Read(userId);
-        if (bookshelf is null)
-        {
-            // TODO - create new bookshelf   
-        }
+        var bookshelf = await _bookshelfRepository.Read(userId) ?? Bookshelf.CreateEmpty(userId);
 
         bookshelf.AddBook(book);
 

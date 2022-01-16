@@ -13,4 +13,6 @@ public class StringValueObject
 
         Value = value;
     }
+
+    public override string ToString() => Value;
 }
