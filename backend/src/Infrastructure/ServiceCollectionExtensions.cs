@@ -11,4 +11,7 @@ public static class ServiceCollectionExtensions
         // TODO - add configuration as singleton
         return services.AddSingleton<IBookFinderApi, BookFinderGoogleApi>();
     }
+
+    // TODO
+    public static IServiceCollection AddMongoRepositories(this IServiceCollection services) => services;
 }
