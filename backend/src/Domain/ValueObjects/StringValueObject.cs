@@ -4,15 +4,15 @@ namespace Domain.ValueObjects;
 
 public class StringValueObject
 {
-    public string Value { get; }
+    public string InputIsbn { get; }
     
-    public StringValueObject(string value)
+    public StringValueObject(string inputIsbn)
     {
-        if (IsNullOrEmpty(value) || IsNullOrWhiteSpace(value))
-            throw new ArgumentNullException(nameof(value));
+        if (IsNullOrEmpty(inputIsbn) || IsNullOrWhiteSpace(inputIsbn))
+            throw new ArgumentNullException(nameof(inputIsbn));
 
-        Value = value;
+        InputIsbn = inputIsbn;
     }
 
-    public override string ToString() => Value;
+    public override string ToString() => InputIsbn;
 }

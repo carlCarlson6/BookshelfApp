@@ -2,5 +2,5 @@ namespace Domain.ValueObjects;
 
 public class Email : StringValueObject
 {
-    public Email(string value) : base(value) { }
+    public Email(string inputIsbn) : base(inputIsbn) { }
 }
