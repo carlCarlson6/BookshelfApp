@@ -4,7 +4,7 @@ namespace Domain.ValueObjects;
 
 public class Password : StringValueObject
 {
-    public Password(string inputIsbn) : base(inputIsbn) { }
+    public Password(string value) : base(value) { }
 
     public static Password Create(string inputPassword)
     {
@@ -20,8 +20,8 @@ public class Password : StringValueObject
 
     public bool Validate(Password inputPassword)
     {
-        var hashBytesA = Convert.FromBase64String(InputIsbn);
-        var hashBytesB = Convert.FromBase64String(inputPassword.InputIsbn);
+        var hashBytesA = Convert.FromBase64String(Value);
+        var hashBytesB = Convert.FromBase64String(inputPassword.Value);
         return HashingUtils.ValidateHashes(hashBytesA, hashBytesB);
     } 
 }

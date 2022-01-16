@@ -5,12 +5,12 @@ namespace Domain.ValueObjects;
 
 public class Isbn : StringValueObject
 {
-    public Isbn(string inputIsbn) : base(inputIsbn)
+    public Isbn(string value) : base(value)
     {
-        inputIsbn = CleanIsbn(inputIsbn);
+        value = CleanIsbn(value);
         
-        if (!ValidateIsbn(inputIsbn))
-            throw new InvalidIsbnException(inputIsbn);
+        if (!ValidateIsbn(value))
+            throw new InvalidIsbnException(value);
     }
 
     private string CleanIsbn(string inputIsbn) => RemoveNonNumeric(inputIsbn);

@@ -23,5 +23,5 @@ public class UserByEmailSpecification : Specification<Email>
         _email = email;
     }
 
-    public override Expression<Func<Email, bool>> ToExpression() => email => _email.InputIsbn.Equals(email.InputIsbn);
+    public override Expression<Func<Email, bool>> ToExpression() => email => _email.Value.Equals(email.Value);
 }
