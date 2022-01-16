@@ -2,10 +2,10 @@ namespace Domain.ValueObjects;
 
 public class Id
 {
-    public string Value { get => this.value.ToString(); }
-    private Guid value;
+    public string Value { get => _value.ToString(); }
+    private readonly Guid _value;
 
-    public Id(string value) => this.value = new Guid(value);
-
-    public static Id Generate() => new Id(Guid.NewGuid().ToString());
+    public Id(string value) => _value = new Guid(value);
+    
+    public override string ToString() => Value;
 }

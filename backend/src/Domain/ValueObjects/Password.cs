@@ -18,8 +18,6 @@ public class Password : StringValueObject
         return new Password(hashedPassword);
     }
 
-    public bool Validate(string inputPassword) => Validate(Create(inputPassword));
-    
     public bool Validate(Password inputPassword)
     {
         var hashBytesA = Convert.FromBase64String(Value);

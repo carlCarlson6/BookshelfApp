@@ -12,7 +12,9 @@ public class User
     public User(UserId id, Email email, Password password) => 
         (Id, Email, Password) = (id, email, password);
 
-    public void ValidatePassword(string inputPassword)
+    public static User Create(Email email, Password password) => new (UserId.Generate(), email, password);
+    
+    public void ValidatePassword(Password inputPassword)
     {
         var validation = Password.Validate(inputPassword);
         if (!validation)
