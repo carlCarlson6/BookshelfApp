@@ -17,8 +17,10 @@ public class AddBookToBookshelf : IAddBookToBookshelf
     {
         var bookshelf = await _bookshelfRepository.Read(userId);
         if (bookshelf is null)
-            // TODO - create new bookshelf
-        
+        {
+            // TODO - create new bookshelf   
+        }
+
         bookshelf.AddBook(book);
 
         await _bookshelfRepository.Save(bookshelf);
