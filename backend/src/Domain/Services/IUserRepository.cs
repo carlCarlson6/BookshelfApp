@@ -1,4 +1,5 @@
 using Domain.Entities;
+using Domain.Specifications;
 using Domain.ValueObjects;
 
 namespace Domain.Services;

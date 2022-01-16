@@ -1,9 +1,10 @@
-using Application.Abstractions;
 using Application.Jwt;
+using Application.UseCases.Abstractions;
 using Domain;
 using Domain.Entities;
 using Domain.Exceptions;
 using Domain.Services;
+using Domain.Specifications;
 using Domain.ValueObjects;
 
 namespace Application.UseCases;

@@ -1,4 +1,5 @@
 using System.Collections.ObjectModel;
+using Domain.Specifications;
 using Domain.ValueObjects;
 
 namespace Domain.Entities;
@@ -25,4 +26,8 @@ public class Bookshelf
     public static Bookshelf Create(UserId owner, List<Book> books) => new (BookshelfId.Generate(), owner, books);
 
     public void AddBookToShelf(Book book) => _books.Add(book);
+
+    public IEnumerable<Book> FilterBySpecification(Specification<Book> specification) =>
+        _books.FindAll(specification.ToPredicate());
+
 }

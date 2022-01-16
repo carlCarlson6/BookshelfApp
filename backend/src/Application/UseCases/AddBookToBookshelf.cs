@@ -1,4 +1,4 @@
-using Application.Abstractions;
+using Application.UseCases.Abstractions;
 using Domain.Entities;
 using Domain.Exceptions;
 using Domain.Services;

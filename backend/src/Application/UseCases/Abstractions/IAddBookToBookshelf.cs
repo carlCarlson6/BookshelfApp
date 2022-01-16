@@ -1,6 +1,6 @@
 using Domain.ValueObjects;
 
-namespace Application.Abstractions;
+namespace Application.UseCases.Abstractions;
 
 public interface IAddBookToBookshelf
 {
