@@ -15,7 +15,7 @@ public class AddBookHandler : IRequestHandler<AddBookByIsbnCommand>
 
     public async Task<Unit> Handle(AddBookByIsbnCommand request, CancellationToken cancellationToken)
     {
-        var (userId, isbn) = await request.CreateValueObjects();
+        var (userId, isbn) = await request.ToValueObjects();
 
         await _addBookToBookshelf.Execute(userId, isbn, request.Location);
 

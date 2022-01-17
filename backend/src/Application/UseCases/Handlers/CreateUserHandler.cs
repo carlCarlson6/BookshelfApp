@@ -1,6 +1,5 @@
 using Application.UseCases.Abstractions;
 using Application.UseCases.Handlers.Commands;
-using Domain.ValueObjects;
 using MediatR;
 
 namespace Application.UseCases.Handlers;
@@ -13,16 +12,10 @@ public class CreateUserHandler : IRequestHandler<CreateUserCommand>
 
     public async Task<Unit> Handle(CreateUserCommand request, CancellationToken cancellationToken)
     {
-        var (email, password) = await CreateValueObjects(request);
+        var (email, password) = await request.ToValueObjects();
 
         await _useCase.Execute(email, password);
         
         return Unit.Value;
     }
-
-    // TODO - move to extension
-    private static Task<(Email email, Password password)> CreateValueObjects(CreateUserCommand command) =>
-        Task.FromResult((
-            Email.Create(command.Email), 
-            Password.Create(command.Password)));
 }

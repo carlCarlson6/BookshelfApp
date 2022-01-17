@@ -1,7 +1,7 @@
 using Application.DTOs;
 using Application.UseCases.Abstractions;
 using Application.UseCases.Handlers.Queries;
-using Domain.ValueObjects;
+using Domain.Specifications;
 using MediatR;
 
 namespace Application.UseCases.Handlers;
@@ -17,20 +17,30 @@ public class QueryBooksHandler :
 
     public async Task<BookshelfDto> Handle(QueryAllBooks request, CancellationToken cancellationToken)
     {
-        var userId = new UserId(request.UserId);
+        var userId = request.ToValueObjects();
 
         var bookshelf = await _retriever.RetrieveAllUserBooks(userId);
 
         return bookshelf.ToDto();
     }
 
-    public Task<BookshelfDto> Handle(QueryBooksByLocation request, CancellationToken cancellationToken)
+    public async Task<BookshelfDto> Handle(QueryBooksByLocation request, CancellationToken cancellationToken)
     {
-        throw new NotImplementedException();
+        var (userId, location) = await request.ToValueObjects();
+
+        var specification = new BooksByLocationSpecification(location);
+        var bookshelf = await _retriever.RetrieveAllUserBooksBySpecification(userId, specification);
+
+        return bookshelf.ToDto();
     }
 
-    public Task<BookshelfDto> Handle(QueryBooksByAuthor request, CancellationToken cancellationToken)
+    public async Task<BookshelfDto> Handle(QueryBooksByAuthor request, CancellationToken cancellationToken)
     {
-        throw new NotImplementedException();
+        var (userId, author) = await request.ToValueObjects();
+
+        var specification = new BooksByAuthorSpecification(author);
+        var bookshelf = await _retriever.RetrieveAllUserBooksBySpecification(userId, specification);
+
+        return bookshelf.ToDto();
     }
 }
