@@ -27,7 +27,7 @@ public class BookFinderGoogleApi : IBookFinderApi
         };
 
         var response = await _http
-            .GetFromJsonAsync<GoogleBooksReponse>(QueryHelpers.AddQueryString("/api/", query));
+            .GetFromJsonAsync<GoogleBooksResponse>(QueryHelpers.AddQueryString("/api/", query));
 
         if (response is null || response.TotalItems is 0)
             return null;

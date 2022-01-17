@@ -6,4 +6,6 @@ public class AuthToken : StringValueObject
 
     public static AuthToken FromAuthorizationBearer(string authorizationHeader) =>
         new(authorizationHeader.Replace("Bearer ", ""));
+
+    public string ToStringWithBearer() => $"Bearer {Value}";
 }

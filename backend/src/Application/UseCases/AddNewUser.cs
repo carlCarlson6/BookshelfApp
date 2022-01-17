@@ -14,7 +14,7 @@ public class AddNewUser : IAddNewUser
 
     public AddNewUser(IUserRepository userRepository) => _userRepository = userRepository;
 
-    public async Task<User> Execute(Email email, Password password)
+    public async Task Execute(Email email, Password password)
     {
         var userFound = await FindUserByEmail(email);
         if (userFound is not null)
@@ -22,8 +22,6 @@ public class AddNewUser : IAddNewUser
 
         var user = User.Create(email, password);
         await _userRepository.Save(user);
-
-        return user;
     }
     
     private async Task<User?> FindUserByEmail(Email email)

@@ -1,0 +1,4 @@
+https://developers.google.com/books/docs/v1/using
+
+https://console.cloud.google.com/apis/credentials?pli=1&project=bookshelfapp-338416&supportedpurview=project
+

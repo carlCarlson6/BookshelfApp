@@ -1,4 +1,3 @@
-using System.Collections.ObjectModel;
 using Domain.Specifications;
 using Domain.ValueObjects;
 
@@ -9,17 +8,21 @@ public class Bookshelf
     public BookshelfId Id { get; }
     public UserId Owner { get; }
     
-    public ReadOnlyCollection<Book> Books => _books.AsReadOnly();
+    public IEnumerable<Book> Books => _books.AsReadOnly();
     private List<Book> _books;
     
-    public ReadOnlyCollection<string> Locations => 
-        _books.Select(book => book.Location).Distinct().ToList().AsReadOnly();
+    public IEnumerable<string> Locations => 
+        _books.Select(book => book.Location)
+            .Distinct()
+            .Where(location => !string.IsNullOrWhiteSpace(location))
+            .ToList()
+            .AsReadOnly();
 
-    public Bookshelf(BookshelfId bookshelfId, UserId owner, List<Book> books)
+    public Bookshelf(BookshelfId bookshelfId, UserId owner, IEnumerable<Book> books)
     {
         Id = bookshelfId;
         Owner = owner;
-        _books = books;
+        _books = books.ToList();
     }
 
     public static Bookshelf CreateEmpty(UserId owner) => Create(owner, new List<Book>());

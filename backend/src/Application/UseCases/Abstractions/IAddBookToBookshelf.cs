@@ -4,5 +4,5 @@ namespace Application.UseCases.Abstractions;
 
 public interface IAddBookToBookshelf
 {
-    Task Execute(UserId userId, Isbn book, string location);
+    Task Execute(UserId userId, Isbn isbn, string location);
 }

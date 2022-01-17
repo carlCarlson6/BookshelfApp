@@ -183,7 +183,7 @@ public class Item
     public SearchInfo SearchInfo { get; set; }
 }
 
-public class GoogleBooksReponse
+public class GoogleBooksResponse
 {
     [JsonProperty("kind")]
     public string Kind { get; set; }
