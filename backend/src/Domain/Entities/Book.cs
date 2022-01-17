@@ -30,4 +30,6 @@ public class Book
     }
     
     public void AddLocation(string location) => Location = location;
+
+    public bool Equals(Book book) => Isbn.Equals(book.Isbn);
 }

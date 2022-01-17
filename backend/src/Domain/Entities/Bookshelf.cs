@@ -1,3 +1,4 @@
+using Domain.Exceptions;
 using Domain.Specifications;
 using Domain.ValueObjects;
 
@@ -28,7 +29,13 @@ public class Bookshelf
     public static Bookshelf CreateEmpty(UserId owner) => Create(owner, new List<Book>());
     public static Bookshelf Create(UserId owner, List<Book> books) => new (BookshelfId.Generate(), owner, books);
 
-    public void AddBookToShelf(Book book) => _books.Add(book);
+    public void AddBookToShelf(Book bookToAdd)
+    {
+        if (_books.Any(book => book.Equals(book)))
+            throw new BookAlreadyAddedException();
+        
+        _books.Add(bookToAdd);
+    }
 
     public IEnumerable<Book> FilterBySpecification(Specification<Book> specification) =>
         _books.FindAll(specification.ToPredicate());

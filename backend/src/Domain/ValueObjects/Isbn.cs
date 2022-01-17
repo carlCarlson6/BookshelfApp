@@ -22,4 +22,6 @@ public class Isbn : StringValueObject
         var isLength10Or13 = isbn.Length is 10 or 13;
         return isOnlyNumber && isLength10Or13;
     }
+    
+    public bool Equals(Isbn isbn) => isbn.Value == Value;
 }
