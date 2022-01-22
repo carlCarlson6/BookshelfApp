@@ -9,7 +9,7 @@ public class BooksByTitleSpecification : Specification<Book>
     
     public BooksByTitleSpecification(string title) => _title = title;
     
-    public override Expression<Func<Book, bool>> ToExpression() => throw new NotImplementedException();
+    public override Expression<Func<Book, bool>> ToExpression() => book => book.Title.Contains(_title);
 
     public override Predicate<Book> ToPredicate() => book => book.Title.Contains(_title);
 }
@@ -20,7 +20,7 @@ public class BooksByAuthorSpecification : Specification<Book>
     
     public BooksByAuthorSpecification(string author) => _author = author;
     
-    public override Expression<Func<Book, bool>> ToExpression() => throw new NotImplementedException();
+    public override Expression<Func<Book, bool>> ToExpression() => book => book.Title.Contains(_author);
 
     public override Predicate<Book> ToPredicate() => book => book.Title.Contains(_author);
 }
@@ -31,7 +31,7 @@ public class BooksByLocationSpecification : Specification<Book>
     
     public BooksByLocationSpecification(string location) => _location = location;
     
-    public override Expression<Func<Book, bool>> ToExpression() => throw new NotImplementedException();
+    public override Expression<Func<Book, bool>> ToExpression() => book => book.Title.Contains(_location);
 
     public override Predicate<Book> ToPredicate() => book => book.Title.Contains(_location);
 }

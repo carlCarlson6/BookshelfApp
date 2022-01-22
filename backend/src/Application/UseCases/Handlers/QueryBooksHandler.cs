@@ -9,7 +9,8 @@ namespace Application.UseCases.Handlers;
 public class QueryBooksHandler : 
     IRequestHandler<QueryAllBooks, BookshelfDto>, 
     IRequestHandler<QueryBooksByLocation, BookshelfDto>,
-    IRequestHandler<QueryBooksByAuthor, BookshelfDto>
+    IRequestHandler<QueryBooksByAuthor, BookshelfDto>,
+    IRequestHandler<QueryBooksByTitle, BookshelfDto>
 {
     private readonly IBookshelfRetriever _retriever;
 
@@ -39,6 +40,16 @@ public class QueryBooksHandler :
         var (userId, author) = await request.ToValueObjects();
 
         var specification = new BooksByAuthorSpecification(author);
+        var bookshelf = await _retriever.RetrieveAllUserBooksBySpecification(userId, specification);
+
+        return bookshelf.ToDto();
+    }
+
+    public async Task<BookshelfDto> Handle(QueryBooksByTitle request, CancellationToken cancellationToken)
+    {
+        var (userId, title) = await request.ToValueObjects();
+
+        var specification = new BooksByTitleSpecification(title);
         var bookshelf = await _retriever.RetrieveAllUserBooksBySpecification(userId, specification);
 
         return bookshelf.ToDto();

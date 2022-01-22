@@ -23,7 +23,6 @@ public class AuthenticateUser : IAuthenticateUser
     {
         var user = await FindUserByEmail(inputEmail);
         if (user is null)
-            // TODO - create domain exception
             throw new UserNotFoundException(inputEmail);
 
         user.ValidatePassword(inputPassword);

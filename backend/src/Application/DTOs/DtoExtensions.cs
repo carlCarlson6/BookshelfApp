@@ -14,8 +14,5 @@ public static class DtoExtensions
     
     public static IEnumerable<BookDto> ToDto(this IEnumerable<Book> books) => books.Select(ToDto);
 
-    public static BookDto ToDto(this Book book) => new BookDto
-    {
-
-    };
+    public static BookDto ToDto(this Book book) => throw new NotImplementedException();
 }

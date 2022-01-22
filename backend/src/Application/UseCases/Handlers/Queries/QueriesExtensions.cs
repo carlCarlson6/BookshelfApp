@@ -15,4 +15,9 @@ public static class QueriesExtensions
         Task.FromResult((
             new UserId(query.UserId), 
             query.Location));
+    
+    public static Task<(UserId userId, string title)> ToValueObjects(this QueryBooksByTitle query) =>
+        Task.FromResult((
+            new UserId(query.UserId), 
+            query.Title));
 }

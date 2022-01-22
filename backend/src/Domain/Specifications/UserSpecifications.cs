@@ -11,5 +11,5 @@ public class UserByEmailSpecification : Specification<Email>
 
     public override Expression<Func<Email, bool>> ToExpression() => email => _email.Value.Equals(email.Value);
     
-    public override Predicate<Email> ToPredicate() => throw new NotImplementedException();
+    public override Predicate<Email> ToPredicate() => email => _email.Value.Equals(email.Value);
 }
