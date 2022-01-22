@@ -9,5 +9,12 @@ public class UserModel
     public string Email { get; set; } = null!;
     public string HashedPassword { get; set; } = null!;
 
-    public User ToDomain() => new User(new UserId(Id), new Email(Email), new Password(HashedPassword));
+    public User ToDomain() => new (new UserId(Id), new Email(Email), new Password(HashedPassword));
+
+    public static UserModel CreateModel(User user) => new()
+    {
+        Id = user.Id.ToString(),
+        Email = user.Email.ToString(),
+        HashedPassword = user.Password.ToString()
+    };
 }

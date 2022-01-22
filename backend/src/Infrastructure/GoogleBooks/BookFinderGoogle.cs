@@ -6,12 +6,12 @@ using Microsoft.AspNetCore.WebUtilities;
 
 namespace Infrastructure.GoogleBooks;
 
-public class BookFinderGoogleApi : IBookFinderApi
+public class BookFinderGoogle : IBookFinder
 {
     private readonly GoogleBooksApiConfiguration _configuration;
     private readonly HttpClient _http;
 
-    public BookFinderGoogleApi(GoogleBooksApiConfiguration configuration)
+    public BookFinderGoogle(GoogleBooksApiConfiguration configuration)
     {
         _configuration = configuration;
         _http = new HttpClient();

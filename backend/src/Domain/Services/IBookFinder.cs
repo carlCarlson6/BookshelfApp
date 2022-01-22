@@ -3,7 +3,7 @@ using Domain.ValueObjects;
 
 namespace Domain.Services;
 
-public interface IBookFinderApi
+public interface IBookFinder
 {
     Task<Book?> Search(Isbn isbn);
 }

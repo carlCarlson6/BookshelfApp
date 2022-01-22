@@ -1,5 +1,4 @@
 using Domain.Entities;
-using Domain.Specifications;
 using Domain.ValueObjects;
 
 namespace Domain.Services;
@@ -10,7 +9,7 @@ public interface IUserRepository
     
     Task<IEnumerable<User>> Read();
     Task<User?> Read(UserId id);
-    Task<User?> Read(Specification<Email> specification);
+    Task<User?> Read(Email email);
     
     Task Update(User user);
     

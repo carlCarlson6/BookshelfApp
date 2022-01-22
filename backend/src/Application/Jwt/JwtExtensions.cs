@@ -9,7 +9,7 @@ namespace Application.Jwt;
 
 public static class JwtValidation
 {
-    public static IServiceCollection AddJwtValidation(this IServiceCollection services, ConfigurationManager configurationManager)
+    internal static IServiceCollection AddJwtValidation(this IServiceCollection services, ConfigurationManager configurationManager)
     {
         var jwtConfiguration = configurationManager.GetValue<JwtConfiguration>(nameof(JwtConfiguration));
 

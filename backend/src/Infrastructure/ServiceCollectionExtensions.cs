@@ -16,7 +16,7 @@ public static class ServiceCollectionExtensions
 
         return services
             .AddSingleton(config)
-            .AddSingleton<IBookFinderApi, BookFinderGoogleApi>();
+            .AddSingleton<IBookFinder, BookFinderGoogle>();
     }
     
     public static IServiceCollection AddMongoRepositories(this IServiceCollection services, ConfigurationManager configurationManager)

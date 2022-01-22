@@ -5,5 +5,5 @@ public class Email : StringValueObject
     // TODO add validations
     public Email(string value) : base(value) { }
 
-    public static Email Create(string inputEmail) => new Email(inputEmail);
+    public static Email Create(string inputEmail) => new(inputEmail);
 }

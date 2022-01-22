@@ -9,9 +9,9 @@ namespace Application.UseCases;
 public class AddBookToBookshelf : IAddBookToBookshelf
 {
     private readonly IBookshelfRepository _bookshelfRepository;
-    private readonly IBookFinderApi _bookFinder;
+    private readonly IBookFinder _bookFinder;
 
-    public AddBookToBookshelf(IBookshelfRepository bookshelfRepository, IBookFinderApi bookFinder)
+    public AddBookToBookshelf(IBookshelfRepository bookshelfRepository, IBookFinder bookFinder)
     {
         _bookshelfRepository = bookshelfRepository;
         _bookFinder = bookFinder;
