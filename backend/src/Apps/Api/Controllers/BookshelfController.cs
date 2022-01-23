@@ -44,11 +44,42 @@ public class BookshelfController : Controller
     }
 
     [HttpGet(Name = nameof(GetShelf))]
-    public async Task<ActionResult<BookshelfDto>> GetShelf()
+    // TODO - add produces response type
+    public async Task<ActionResult<BookshelfDto>> GetShelf([FromQuery] string author, [FromQuery] string location, [FromQuery] string title)
     {
-        var query = new QueryAllBooks { UserId = HttpContext.GetIdentifiedUserId() };
+        try
+        {
+            var query = DetermineQuery(author, location, title);
+            return await _mediator.Send(query);;
+        }
+        // TODO - catch rest of exceptions
+        catch (ArgumentOutOfRangeException)
+        {
+            return BadRequest();
+        }
+    }
 
-        var bookshelf = await _mediator.Send(query);
-        return bookshelf;
+    private IQueryBooksRequest DetermineQuery(string author, string location, string title)
+    {
+        var userId = HttpContext.GetIdentifiedUserId();
+
+        if (string.IsNullOrWhiteSpace(author) && string.IsNullOrWhiteSpace(location) && string.IsNullOrWhiteSpace(title))
+        {
+            return new QueryAllBooks { UserId = userId };
+        }
+        if (!string.IsNullOrWhiteSpace(author) && string.IsNullOrWhiteSpace(location) && string.IsNullOrWhiteSpace(title))
+        {
+            return new QueryBooksByAuthor { UserId = userId, Author = author};
+        }
+        if (string.IsNullOrWhiteSpace(author) && !string.IsNullOrWhiteSpace(location) && string.IsNullOrWhiteSpace(title))
+        {
+            return new QueryBooksByLocation { UserId = userId, Location = location};
+        }
+        if (string.IsNullOrWhiteSpace(author) && string.IsNullOrWhiteSpace(location) && !string.IsNullOrWhiteSpace(title))
+        {
+            return new QueryBooksByTitle { UserId = userId, Title = title};
+        }
+
+        throw new ArgumentOutOfRangeException();
     }
 }
