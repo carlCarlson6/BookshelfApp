@@ -1,4 +1,4 @@
-namespace Domain.Exceptions;
+namespace Bookshelf.Users.Exceptions;
 
 public class InvalidPasswordException : Exception
 {

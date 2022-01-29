@@ -16,10 +16,5 @@ public class User
     
     public void ValidatePassword(Password inputPassword)
     {
-        var validation = Password.Validate(inputPassword);
-        if (!validation)
-        {
-            throw new InvalidPasswordException();
-        }
     }
 }

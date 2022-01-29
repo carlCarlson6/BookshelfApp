@@ -1,6 +1,5 @@
 using Application.Jwt;
 using Application.UseCases.Abstractions;
-using Domain.Exceptions;
 using Domain.Services;
 using Domain.ValueObjects;
 
@@ -20,8 +19,6 @@ public class AuthenticateUser : IAuthenticateUser
     public async Task<AuthToken> Execute(Email inputEmail, Password inputPassword)
     {
         var user = await _userRepository.Read(inputEmail);
-        if (user is null)
-            throw new UserNotFoundException(inputEmail);
 
         user.ValidatePassword(inputPassword);
         

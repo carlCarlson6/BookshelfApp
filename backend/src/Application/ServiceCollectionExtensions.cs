@@ -17,7 +17,6 @@ public static class ServiceCollectionExtensions
     public static IServiceCollection AddUseCases(this IServiceCollection services) => 
         services
             .AddTransient<IAddBookToBookshelf, AddBookToBookshelf>()
-            .AddTransient<IAddNewUser, AddNewUser>()
             .AddTransient<IAuthenticateUser, AuthenticateUser>()
             .AddTransient<IBookshelfRetriever, BookshelfRetriever>();
 }

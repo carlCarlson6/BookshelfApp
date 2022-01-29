@@ -25,11 +25,7 @@ public class AuthController : Controller
             var token = await _mediator.Send(authenticateUserCommand);
             return new LoginUserResponse { JwtToken = token };
         }
-        catch (UserNotFoundException)
-        {
-            return BadRequest();
-        }
-        catch (InvalidPasswordException)
+        catch
         {
             return BadRequest();
         }

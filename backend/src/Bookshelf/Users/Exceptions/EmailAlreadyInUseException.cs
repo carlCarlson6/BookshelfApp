@@ -1,6 +1,4 @@
-using Domain.ValueObjects;
-
-namespace Domain.Exceptions;
+namespace Bookshelf.Users.Exceptions;
 
 public class EmailAlreadyInUseException : Exception
 {

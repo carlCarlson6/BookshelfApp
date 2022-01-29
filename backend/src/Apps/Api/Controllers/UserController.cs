@@ -1,6 +1,5 @@
 using System.Net;
 using Application.UseCases.Handlers.Commands;
-using Domain.Exceptions;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -24,7 +23,7 @@ public class UserController : Controller
             await _mediator.Send(command);
             return Ok();
         }
-        catch (EmailAlreadyInUseException)
+        catch
         {
             return BadRequest();
         }

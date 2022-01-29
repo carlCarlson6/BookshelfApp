@@ -8,22 +8,19 @@ namespace Infrastructure.GoogleBooks;
 
 public class BookFinderGoogle : IBookFinder
 {
-    private readonly GoogleBooksApiConfiguration _configuration;
     private readonly HttpClient _http;
 
     public BookFinderGoogle(GoogleBooksApiConfiguration configuration)
     {
-        _configuration = configuration;
         _http = new HttpClient();
-        _http.BaseAddress = new Uri(_configuration.BaseUrl);
+        _http.BaseAddress = new Uri(configuration.BaseUrl);
     }
 
     public async Task<Book?> Search(Isbn isbn)
     {
         var query = new Dictionary<string, string>
         {
-            ["q"] = $"isbn:{isbn}",
-            ["key"] = _configuration.ApiKey,
+            ["q"] = $"isbn:{isbn}"
         };
 
         var response = await _http
