@@ -22,7 +22,7 @@ public class SignIn : ISignIn
         if (userModel is not null)
             throw new EmailAlreadyInUseException(email);
 
-        var user = User.Create(email, password).ToModel();
+        var user = User.Create(email, password).ToDocument();
         await session.StoreAsync(user);
     }
 }

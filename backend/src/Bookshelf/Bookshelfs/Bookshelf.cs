@@ -1,8 +1,9 @@
-using Domain.Exceptions;
-using Domain.Specifications;
-using Domain.ValueObjects;
+using Bookshelf.Bookshelfs.Exceptions;
+using Bookshelf.Bookshelfs.Specifications;
+using Bookshelf.Users;
+using static System.String;
 
-namespace Domain.Entities;
+namespace Bookshelf.Bookshelfs;
 
 public class Bookshelf
 {
@@ -37,8 +38,19 @@ public class Bookshelf
     
     private IEnumerable<string> GetNonEmptyUniqueLocation() => 
         _books.Select(book => book.Location)
-        .Distinct()
-        .Where(location => !string.IsNullOrWhiteSpace(location))
-        .ToList()
-        .AsReadOnly();
+            .Distinct()
+            .Where(location => !IsNullOrWhiteSpace(location))
+            .ToList()
+            .AsReadOnly();
+}
+
+public record BookshelfId
+{
+    private readonly string _id;
+    
+    public BookshelfId(string id) => _id = Guid.Parse(id).ToString();
+     
+    public override string ToString() => _id;
+    
+    public static BookshelfId Generate() => new(Guid.NewGuid().ToString());
 }

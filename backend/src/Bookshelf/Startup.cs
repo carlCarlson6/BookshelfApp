@@ -1,5 +1,6 @@
 using Bookshelf.Infrastructure;
 using Bookshelf.Users;
+using GoogleBooks.SDK;
 
 namespace Bookshelf;
 
@@ -18,9 +19,10 @@ public static class Startup
 
         builder.Services
             .AddRavenDatabase(config)
+            .AddGoogleBooks(config)
             .AddJwt(config)
             .AddUsersSlice();
-
+        
         return builder;
     }
 
